@@ -7,10 +7,18 @@ const props = defineProps({
   todos: {
     type: Array,
     default: () => []
+  },
+  keyword: {
+    type: String,
+    default: ''
   }
 })
 
 const router = useRouter()
+
+function checkShow(todoItem) {
+  return todoItem.todo.toLowerCase().includes(props.keyword.toLowerCase())
+}
 </script>
 
 <template>
@@ -27,6 +35,7 @@ const router = useRouter()
       <TodoItem
           class="todos-item"
           v-for="(todoItem) in todoGroup.items"
+          v-show="checkShow(todoItem)"
           :todo="todoItem"
           :key="todoItem.id"
       />

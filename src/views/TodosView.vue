@@ -20,11 +20,17 @@ onBeforeMount(() => {
 
   <div class="todo-view__header">
     <VTitle>Todo List</VTitle>
-    <VInput v-model="searchKeyword" />
+    <VInput
+        v-model.trim="searchKeyword"
+        :icon="true"
+    />
   </div>
 
   <div class="todo-view__content">
-    <TodoList :todos="todoStore.todoList" />
+    <TodoList
+        :todos="todoStore.todoList"
+        :keyword="searchKeyword"
+    />
   </div>
 </div>
 </template>
